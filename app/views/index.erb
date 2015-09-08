@@ -5,12 +5,14 @@
     Enter your Twitter handler to view your most recent tweets
   </div>
   <form method="POST" action="/fetch_tweets">
-    <input type="text" name="handler" placeholder="@yourTwitterHandler">
+    <input type="text" name="handler" placeholder="@yourTwitterHandler" class="form-field">
     <br>
-    <input type="submit">
+    <input type="submit" class="button">
   </form>
-  <div>10 recent tweets by <%= @handler %><br><hr></div>
-  <% @tweets.each do |tweet| %>
-  <div><%= tweet %><br><hr></div>
+  <% if @handler %>
+    <div>10 recent tweets by <%= @handler.handler %><br><hr></div>
+    <% @tweets.each do |tweet| %>
+    <div><%= tweet.tweet %><br><hr></div>
+    <% end %>
   <% end %>
 </div>

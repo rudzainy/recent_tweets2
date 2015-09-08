@@ -34,6 +34,8 @@ require APP_ROOT.join('config', 'database')
 
 require 'byebug'
 
+require 'time'
+
 require 'twitter'
 require 'omniauth-twitter'
 
