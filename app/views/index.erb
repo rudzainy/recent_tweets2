@@ -9,10 +9,12 @@
     <br>
     <input type="submit" class="button" id="submit_btn">
   </form>
+  <div id="tweets_container" data-handler="<%= @handler.handler %>">
   <% if @handler %>
-    <div>10 recent tweets by <%= @handler.handler %><br><hr></div>
+    <div><h3>10 recent tweets by <%= @handler.handler %><h3><hr></div>
     <% @tweets.each do |tweet| %>
     <div><%= tweet.tweet %><br><hr></div>
     <% end %>
   <% end %>
+  </div>
 </div>

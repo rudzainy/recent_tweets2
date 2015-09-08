@@ -8,7 +8,7 @@ $(document).ready(function() {
   	data: { handler: handler } 
   }).done(function(response){
   	$('.spinner').hide();
-  	document.getElementById('notice').innerHTML = "10 recent tweets by" + handler + "<br><hr>";
+  	document.getElementById('notice').innerHTML = "<h3>10 recent tweets by " + handler + "</h3><hr>";
 
 		var tweets = JSON.parse(response)
 
