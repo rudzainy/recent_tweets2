@@ -1,7 +1,22 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  var handler = $('#tweets_container').data('handler')
+  
+  $.ajax({
+  	url: '/refresh',
+  	method: 'POST',
+  	data: { handler: handler } 
+  }).done(function(response){
+  	$('.spinner').hide();
+  	document.getElementById('notice').innerHTML = "10 recent tweets by" + handler + "<br><hr>";
+
+		var tweets = JSON.parse(response)
+
+		tweets.forEach(function(tweet){
+			$('#tweet_div').append(tweet.tweet + "<br><hr>")
+		})
+  	// $.each(tweets, function(tweet){
+  	// 	$('#tweet_div').append(tweet.tweet + "<br><hr>")
+  	// })
+  })
 });

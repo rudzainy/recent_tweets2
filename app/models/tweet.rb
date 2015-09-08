@@ -15,7 +15,7 @@ class Tweet < ActiveRecord::Base
 		last_update = handler.tweets.first.updated_at
 		duration = Time.now - last_update
 
-		if duration > 900
+		if duration > 9
 			true
 		else
 			false

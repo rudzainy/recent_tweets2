@@ -32,6 +32,11 @@
 	padding: 0;
 }
 
+.spinner {
+	height: 35px;
+	width: 35px;
+}
+
 form {
 	margin: 0 auto;
 }

@@ -5,13 +5,7 @@ post '/fetch_tweets' do
 	if TwitterUser.exists?(@handler)
 		@handler = TwitterUser.find_by_handler(@handler)
 		if Tweet.tweets_stale?(@handler)
-			@tweets = @handler.tweets.all
-			@tweets.destroy_all
-			@tweets = Tweet.fetch_recent_tweets(@handler.handler)
-			@tweets.each do |tweet|
-				Tweet.create(tweet: tweet, twitter_user_id: @handler.id)
-			end
-			@tweets = @handler.tweets
+			redirect to ("#{@handler.handler}/updating")
 		else
 			@tweets = @handler.tweets
 		end
@@ -26,6 +20,23 @@ post '/fetch_tweets' do
 	erb :index
 end
 
+post '/refresh' do
+	@handler = TwitterUser.find_by_handler(params[:handler])
+	@tweets = @handler.tweets.all
+	@tweets.destroy_all
+	@tweets = Tweet.fetch_recent_tweets(@handler.handler)
+	@tweets.each do |tweet|
+		Tweet.create(tweet: tweet, twitter_user_id: @handler.id)
+	end
+	@tweets = @handler.tweets.to_json
+
+end
+
+get '/:handler/updating' do
+	@handler = TwitterUser.find_by_handler(params[:handler])
+	erb :updating
+end
+
 get '/:handler' do
 
 	@handler = TwitterUser.format_handler(params[:handler])
@@ -33,13 +44,7 @@ get '/:handler' do
 	if TwitterUser.exists?(@handler)
 		@handler = TwitterUser.find_by_handler(@handler)
 		if Tweet.tweets_stale?(@handler)
-			@tweets = @handler.tweets.all
-			@tweets.destroy_all
-			@tweets = Tweet.fetch_recent_tweets(@handler.handler)
-			@tweets.each do |tweet|
-				Tweet.create(tweet: tweet, twitter_user_id: @handler.id)
-			end
-			@tweets = @handler.tweets
+			redirect to ("#{@handler.handler}/updating")
 		else
 			@tweets = @handler.tweets
 		end

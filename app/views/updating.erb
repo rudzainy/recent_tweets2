@@ -1,5 +1,5 @@
 <div class="container">
-  <img src="/image/logo.png" alt="Who's your daddy?" class="logo">
+  <a href="/"><img src="/image/logo.png" alt="Who's your daddy?" class="logo"></a>
   <h1>Recent Tweets!</h1>
   <div>
     Enter your Twitter handle to view your most recent tweets
@@ -9,10 +9,11 @@
     <br>
     <input type="submit" class="button" id="submit_btn">
   </form>
-  <% if @handler %>
-    <div>10 recent tweets by <%= @handler.handler %><br><hr></div>
-    <% @tweets.each do |tweet| %>
-    <div><%= tweet.tweet %><br><hr></div>
-    <% end %>
-  <% end %>
+
+  <div id="tweets_container" data-handler="<%= @handler.handler %>">
+    <img src="/image/bg-spinner.gif" alt="Updating tweets." class="spinner">
+    <div id="notice"></div>
+    <div id="tweet_div"></div>
+  </div>
+
 </div>
