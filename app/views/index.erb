@@ -1,11 +1,11 @@
-<div class="container center">
-  <img src="/image/logo.png" alt="Who's your daddy?" widht="75px" height="75px">
+<div class="container">
+  <img src="/image/logo.png" alt="Who's your daddy?" class="logo">
   <h1>Recent Tweets!</h1>
   <div>
-    Enter your Twitter handler to view your most recent tweets
+    Enter your Twitter handle to view your most recent tweets
   </div>
-  <form method="POST" action="/fetch_tweets">
-    <input type="text" name="handler" placeholder="@yourTwitterHandler" class="form-field">
+  <form method="POST" action="/fetch_tweets" class="center">
+    <input type="text" name="handler" placeholder="@yourTwitterHandle" class="form-field">
     <br>
     <input type="submit" class="button">
   </form>
